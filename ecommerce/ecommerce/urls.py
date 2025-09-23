@@ -14,9 +14,28 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from django.http import HttpResponse
+from django.views.generic import RedirectView
+
+@api_view(['GET'])
+def api_root(request, format=None):
+    return Response({
+        "accounts": request.build_absolute_uri("accounts/"),
+    })
+
+
+def home(request):
+    return HttpResponse("Welcome to the E-commerce API 🚀")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("api/accounts/", include("accounts.urls")),
+    path('', home),
+    path('', RedirectView.as_view(url='/api/accounts/')),
 ]
