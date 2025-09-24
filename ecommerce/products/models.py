@@ -5,6 +5,7 @@ from django.utils.text import slugify
 from django.conf import settings
 from django.db import models
 
+
 # -------------------------
 # Custom User model
 # -------------------------
@@ -98,3 +99,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class Meta:
+        ordering = ['-created_at']

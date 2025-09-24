@@ -35,7 +35,8 @@ def home(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("api/accounts/", include("accounts.urls")),
     path('', home),
+    path("api/accounts/", include("accounts.urls")),
+    path('api/', include('products.urls')),
     path('', RedirectView.as_view(url='/api/accounts/')),
 ]
