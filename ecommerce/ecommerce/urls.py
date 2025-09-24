@@ -39,4 +39,5 @@ urlpatterns = [
     path("api/accounts/", include("accounts.urls")),
     path('api/', include('products.urls')),
     path('', RedirectView.as_view(url='/api/accounts/')),
+    path('api/', include('products.api.urls')),
 ]
